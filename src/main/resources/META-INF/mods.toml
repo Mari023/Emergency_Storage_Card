@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+issueTrackerURL = "https://github.com/Mari023/Emergency_Storage_Card/issues"
+license = "MIT"
+
+[[mods]]
+modId = "emergency_storage_card"
+version = "${version}"
+displayName = "Emergency Storage Card"
+authors = "mari_023"
+description = '''
+adds an Emergency Storage Card, which dumps the inventory (including the terminal itself!) in the network
+'''
+logoFile = "icon.png"
+
+
+[[dependencies.emergency_storage_card]]
+modId = "neoforge"
+type="REQUIRED"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.emergency_storage_card]]
+modId = "minecraft"
+type="REQUIRED"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.emergency_storage_card]]
+modId = "ae2"
+type="REQUIRED"
+versionRange = "[${ae2_version},18.0.0)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.emergency_storage_card]]
+modId = "ae2wtlib"
+type="REQUIRED"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
