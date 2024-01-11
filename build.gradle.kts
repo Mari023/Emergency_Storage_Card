@@ -40,6 +40,7 @@ dependencies {
     implementation("net.neoforged:neoforge:${neoforgeVersion}")
     implementation("appeng:appliedenergistics2-neoforge:${ae2Version}")
     implementation("de.mari_023:ae2wtlib:${ae2wtlibVersion}")
+    runtimeOnly("me.shedaniel.cloth:cloth-config-neoforge:13.0.121")
 
     implementation("com.google.code.findbugs:jsr305:3.0.2")
 }
@@ -57,6 +58,12 @@ repositories {
         url = uri("https://maven.parchmentmc.net/")
         content {
             includeGroup("org.parchmentmc.data")
+        }
+    }
+    maven {
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroup("me.shedaniel.cloth")
         }
     }
     maven {
