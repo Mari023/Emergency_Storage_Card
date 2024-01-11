@@ -12,7 +12,14 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import de.mari_023.ae2wtlib.wct.CraftingTerminalHandler;
+import de.mari_023.ae2wtlib.wut.WUTHandler;
+
+import appeng.api.config.Actionable;
+import appeng.api.stacks.AEItemKey;
+import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.upgrades.Upgrades;
+import appeng.me.helpers.PlayerSource;
 
 @Mod(EmergencyStorageCard.MOD_ID)
 public class EmergencyStorageCard {
@@ -36,6 +43,24 @@ public class EmergencyStorageCard {
     public void onDeath(LivingDeathEvent event) {
         if (!(event.getEntity() instanceof Player player))
             return;
-        player.getInventory();
+        var handler = CraftingTerminalHandler.getCraftingTerminalHandler(player);
+        if (!handler.inRange())
+            return;
+        if (UpgradeInventories.forItem(handler.getCraftingTerminal(), WUTHandler.getUpgradeCardCount())
+                .isInstalled(EMERGENCY_STORAGE_CARD))
+            return;
+        var grid = handler.getTargetGrid();
+        if (grid == null)
+            return;
+
+        var gridInv = grid.getStorageService().getInventory();
+        var playerSource = new PlayerSource(player, null);
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            var stack = player.getInventory().getItem(i);
+            int insert = (int) gridInv.insert(AEItemKey.of(stack), stack.getCount(), Actionable.MODULATE, playerSource);
+            stack.setCount(stack.getCount() - insert);
+            player.getInventory().setItem(i, stack);
+        }
+        // TODO store curios inventory
     }
 }
