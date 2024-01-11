@@ -1,5 +1,6 @@
 package de.mari_023.esc;
 
+import de.mari_023.ae2wtlib.UpgradeHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -35,6 +36,7 @@ public class EmergencyStorageCard {
             RAN_INIT = true;
 
             EMERGENCY_STORAGE_CARD = Upgrades.createUpgradeCardItem(new Item.Properties().stacksTo(1));
+            UpgradeHelper.addUpgradeToAllTerminals(EMERGENCY_STORAGE_CARD, 1);
             Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(MOD_ID, MOD_ID), EMERGENCY_STORAGE_CARD);
         });
     }
@@ -46,7 +48,7 @@ public class EmergencyStorageCard {
         var handler = CraftingTerminalHandler.getCraftingTerminalHandler(player);
         if (!handler.inRange())
             return;
-        if (UpgradeInventories.forItem(handler.getCraftingTerminal(), WUTHandler.getUpgradeCardCount())
+        if (!UpgradeInventories.forItem(handler.getCraftingTerminal(), WUTHandler.getUpgradeCardCount())
                 .isInstalled(EMERGENCY_STORAGE_CARD))
             return;
         var grid = handler.getTargetGrid();
