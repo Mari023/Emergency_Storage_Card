@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ae2:advanced_card"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:netherite_block"
+    }
+  ],
+  "result": {
+    "item": "emergency_storage_card:emergency_storage_card"
+  }
+}

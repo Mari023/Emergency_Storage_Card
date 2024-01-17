@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": ["emergency_storage_card:emergency_storage_card"]
+  },
+  "criteria": {
+    "has_wt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ae2:wireless_terminal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "emergency_storage_card:emergency_storage_card"
+      }
+    }
+  },
+  "requirements": [["has_wt", "has_the_recipe"]]
+}
