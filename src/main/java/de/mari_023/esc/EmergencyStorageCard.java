@@ -36,8 +36,8 @@ public class EmergencyStorageCard {
             RAN_INIT = true;
 
             EMERGENCY_STORAGE_CARD = Upgrades.createUpgradeCardItem(new Item.Properties().stacksTo(1));
-            UpgradeHelper.addUpgradeToAllTerminals(EMERGENCY_STORAGE_CARD, 1);
             Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(MOD_ID, MOD_ID), EMERGENCY_STORAGE_CARD);
+            UpgradeHelper.addUpgradeToAllTerminals(EMERGENCY_STORAGE_CARD, 1);
         });
     }
 
