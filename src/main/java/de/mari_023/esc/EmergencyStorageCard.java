@@ -1,6 +1,5 @@
 package de.mari_023.esc;
 
-import de.mari_023.ae2wtlib.UpgradeHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +12,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import de.mari_023.ae2wtlib.UpgradeHelper;
 import de.mari_023.ae2wtlib.wct.CraftingTerminalHandler;
 import de.mari_023.ae2wtlib.wut.WUTHandler;
 
