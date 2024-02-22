@@ -21,6 +21,7 @@ val modVersion: String by project
 val ae2Version: String by project
 val ae2wtlibVersion: String by project
 val neoforgeVersion: String by project
+val curiosVersion: String by project
 
 version = "$modVersion-SNAPSHOT"
 
@@ -39,9 +40,10 @@ java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 dependencies {
     implementation("net.neoforged:neoforge:${neoforgeVersion}")
     implementation("appeng:appliedenergistics2-neoforge:${ae2Version}")
-    implementation("de.mari_023:ae2wtlib:${ae2wtlibVersion}")
+    implementation("maven.modrinth:applied-energistics-2-wireless-terminals:${ae2wtlibVersion}")
 
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+    runtimeOnly("top.theillusivec4.curios:curios-neoforge:${curiosVersion}")
 }
 
 repositories {
@@ -60,9 +62,9 @@ repositories {
         }
     }
     maven {
-        url = uri("https://maven.shedaniel.me/")
+        url = uri("https://maven.theillusivec4.top/")
         content {
-            includeGroup("me.shedaniel.cloth")
+            includeGroup("top.theillusivec4.curios")
         }
     }
     maven {
