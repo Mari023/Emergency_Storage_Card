@@ -1,5 +1,7 @@
 package de.mari_023.esc;
 
+import org.jetbrains.annotations.UnknownNullability;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +28,7 @@ import appeng.me.helpers.PlayerSource;
 public class EmergencyStorageCard {
     private static boolean RAN_INIT = false;
     public static final String MOD_ID = "emergency_storage_card";
+    @UnknownNullability
     public static Item EMERGENCY_STORAGE_CARD;
 
     public EmergencyStorageCard(IEventBus modEventBus) {
