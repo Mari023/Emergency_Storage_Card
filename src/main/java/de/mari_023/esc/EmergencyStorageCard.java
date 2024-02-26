@@ -22,6 +22,7 @@ import appeng.api.config.Actionable;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.upgrades.Upgrades;
+import appeng.integration.modules.curios.CuriosIntegration;
 import appeng.me.helpers.PlayerSource;
 
 @Mod(EmergencyStorageCard.MOD_ID)
@@ -60,12 +61,23 @@ public class EmergencyStorageCard {
 
         var gridInv = grid.getStorageService().getInventory();
         var playerSource = new PlayerSource(player, null);
+        // store Player Inventory
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
             var stack = player.getInventory().getItem(i);
             int insert = (int) gridInv.insert(AEItemKey.of(stack), stack.getCount(), Actionable.MODULATE, playerSource);
             stack.setCount(stack.getCount() - insert);
             player.getInventory().setItem(i, stack);
         }
-        // TODO store curios inventory
+
+        // store Curios
+        var cap = player.getCapability(CuriosIntegration.ITEM_HANDLER);
+        if (cap == null)
+            return;
+        for (int i = 0; i < cap.getSlots(); i++) {
+            var stack = cap.extractItem(i, Integer.MAX_VALUE, true);
+            int insert = (int) gridInv.insert(AEItemKey.of(stack), stack.getCount(), Actionable.SIMULATE, playerSource);
+            stack = cap.extractItem(i, insert, false);
+            gridInv.insert(AEItemKey.of(stack), stack.getCount(), Actionable.MODULATE, playerSource);
+        }
     }
 }
